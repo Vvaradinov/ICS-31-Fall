@@ -22,6 +22,7 @@ for item in D:
     print(item, "is a cool duck.")
     duck_count = duck_count + 1
 print("There were", duck_count, "ducks.")
+
 from collections import namedtuple
 Restaurant = namedtuple('Restaurant', 'name cuisine phone dish price')
 R1 = Restaurant('Taillevent', 'French', '01-22-33-44-55-66',
@@ -50,18 +51,19 @@ for-each loop semantics:
 """
 for i in range(5):
     print("Hello" * i)
+
 """
 Semantics are similar; c.v. gets first item in range, then next, then next,
 until the end
 """
+D = ["Huey", 'Dewey', 'Louie']
 print("Here are the ducks:")
 for duck_num in range(len(D)):
     print(duck_num+1, ".  ", D[duck_num])
 print("That's it.")
-
 """
 while-loop:  When you want to repeat an indefinite number of times.
-    Syntax:
+    Syntax: 
         while BOOLEAN-EXPRESSION:
             STATEMENT(S)    # Body of the loop
     Semantics:
@@ -93,12 +95,10 @@ Process the command
 ### but some day maybe a tablet or a watch).
 
 def restaurants() -> None:
-    ''' Main Restaurants program:  Create and maintain a
-        database of restaurants
-    '''
+    ''' Main Restaurants program: Create and maintain resturants '''
     print("Welcome to the Restaurants Program")
     print()
-    our_rests = []   # Here we could read a collection in from a file
+    our_rests = []  # Here we could read a collection in from a file
     our_rests = handle_commands(our_rests)
     # Here we could write our collection out to a file.
     print()
@@ -113,10 +113,13 @@ Restaurant Collection Program --- Choose one
  p:  Print all the restaurants
  q:  Quit
  """
-'''
+
+"""
 def handle_commands(RC: 'list of Restaurant') -> 'list of Restaurant':
     pass   # We call this skeleton/shell of a function a PROGRAM STUB
-'''
+
+"""
+# test function 
 def handle_commands0(RC: 'list of Restaurant') -> 'list of Restaurant':
     ''' Print menu, accept and execute commands to maintain list.
     '''
@@ -126,6 +129,7 @@ def handle_commands0(RC: 'list of Restaurant') -> 'list of Restaurant':
             return RC     # Jump out of this while loop; we're done
         else:
             print("You typed: ", command)
+
 
 def handle_commands(RC: 'list of Restaurant') -> 'list of Restaurant':
     ''' Print menu, accept and execute commands to maintain list.
@@ -155,3 +159,5 @@ def handle_commands(RC: 'list of Restaurant') -> 'list of Restaurant':
 
 
 restaurants()   # Start the whole thing up
+
+
