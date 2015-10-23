@@ -25,6 +25,7 @@ assert test_number(33, 'positive')
 assert not test_number(100, 'negative')
 
 print(test_number(25, 'even'))
+print(test_number(24, 'even'))
 
 print()
 
@@ -204,16 +205,14 @@ from collections import namedtuple
 Restaurant = namedtuple('Restaurant', 'name cuisine phone dish price')
 dank_foods = Restaurant('dank foods', 'dank food', 7778888, 'dank dish', 900.0)
 
-def Restaurant_change_price(x:Restaurant, y:float) -> Restaurant:
+def Restaurant_change_price(x: Restaurant, y: float) -> Restaurant:
     '''changes the price of a restaurant x by a number y
     '''
-    for b in x:
-        b._replace(price = b.price + y)
+    x = x._replace(price = x.price + y)
     return x
 
-Restaurant_change_price(dank_foods, 100)
-print(dank_foods)
-# part (e) isn't finished; it surrently doesn't work
+print(Restaurant_change_price(dank_foods, 1.0))
+# now it works
 print()
 print(' ---part(f)--- ')
 print()
@@ -253,6 +252,44 @@ R26 = Restaurant("Addis Ababa", "Ethiopian", "337-4453", "Yesiga Tibs", 10.50)
 RL = [R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15, R16,
 	R17, R18, R19, R20, R21, R22, R23, R24, R25, R26]
 
+#f.1
+from operator import attrgetter
+def alphabetical(x: RL) -> list:
+    """ takes a list of restaurants and returns that list in alphabetical order"""
+    sorted(x, key = attrgetter("name"))
+    return sorted(x)
 
+print(alphabetical(RL))
 
+print()
+print()
+
+#f.2
+'''
+L_names = []
+def alphabetical_names(x: RL) -> L_names:
+    """ Takes a list and returns a list of "names" of the restaurants
+    """
+          
+   
+print(alphabetical_names(L_names))
+'''
+
+#f.3
+#L = []
+'''def all_Thai(x: list) -> list:
+    """ Takes list of Restaurants and returns all Thai Restaurants
+    """
+    L = list()
+    for item in x:
+        if item.cuisine == "Thai":
+            L = L.append(item)
+    return L
+
+        
+            
     
+            
+print(all_Thai(RL))
+    
+'''
