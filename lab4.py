@@ -1,4 +1,4 @@
-# charley2
+# charley2 vvaradin
 
 
 print('--- part(c)--- ')
@@ -25,7 +25,6 @@ assert test_number(33, 'positive')
 assert not test_number(100, 'negative')
 
 print(test_number(25, 'even'))
-print(test_number(24, 'even'))
 
 print()
 
@@ -205,14 +204,16 @@ from collections import namedtuple
 Restaurant = namedtuple('Restaurant', 'name cuisine phone dish price')
 dank_foods = Restaurant('dank foods', 'dank food', 7778888, 'dank dish', 900.0)
 
-def Restaurant_change_price(x: Restaurant, y: float) -> Restaurant:
+def Restaurant_change_price(x:Restaurant, y:float) -> Restaurant:
     '''changes the price of a restaurant x by a number y
     '''
     x = x._replace(price = x.price + y)
     return x
+print(dank_foods)
+print(Restaurant_change_price(dank_foods, 120.5))
 
-print(Restaurant_change_price(dank_foods, 1.0))
-# now it works
+
+# part (e) isn't finished; it surrently doesn't work
 print()
 print(' ---part(f)--- ')
 print()
@@ -252,44 +253,113 @@ R26 = Restaurant("Addis Ababa", "Ethiopian", "337-4453", "Yesiga Tibs", 10.50)
 RL = [R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15, R16,
 	R17, R18, R19, R20, R21, R22, R23, R24, R25, R26]
 
-#f.1
+"""
 from operator import attrgetter
-def alphabetical(x: RL) -> list:
-    """ takes a list of restaurants and returns that list in alphabetical order"""
+def alphabetical(x:list) -> list:
+    '''returns of list sorted by alphabetical order
+    '''
     sorted(x, key = attrgetter("name"))
     return sorted(x)
+print(alphabetical(RL))
+"""
+
+def alphabetical_order(x:list) -> None:
+    return x.name
+def alphabetical(x:list) -> list:
+    '''returns of list sorted by alphabetical order
+    '''
+    b = sorted(x, key = alphabetical_order)
+    return b
 
 print(alphabetical(RL))
-
-print()
-print()
-
-#f.2
-'''
-L_names = []
-def alphabetical_names(x: RL) -> L_names:
-    """ Takes a list and returns a list of "names" of the restaurants
-    """
-          
-   
-print(alphabetical_names(L_names))
-'''
-
-#f.3
-#L = []
-'''def all_Thai(x: list) -> list:
-    """ Takes list of Restaurants and returns all Thai Restaurants
-    """
-    L = list()
-    for item in x:
-        if item.cuisine == "Thai":
-            L = L.append(item)
-    return L
-
-        
-            
     
-            
+
+print()
+
+def alphabetical_names(x: list) -> list:
+    '''takes a list x and returns a list of sorted names
+    '''
+    names = []
+    for b in x:
+        names.append(b.name)
+    names.sort()
+    return names
+print(alphabetical_names(RL))
+
+print()
+
+def all_Thai(x: list) -> list:
+    '''returns all thai restaurants in a list
+    '''
+    thai = []
+    for b in x:
+        if b.cuisine == 'Thai':
+            thai.append(b.name)
+    return thai
+
 print(all_Thai(RL))
-    
-'''
+
+print()
+
+def select_cuisine(x: list, y: str) -> list:
+    '''returns a list of restaurants whose cuisine matches the string y
+    '''
+    cuisine = []
+    for b in x:
+        if b.cuisine == y:
+            cuisine.append(b)
+    return cuisine
+print(select_cuisine(RL, 'Burgers'))
+
+print()
+
+def select_cheaper(x: list, y: float) -> list:
+    '''returns a list of prices under price y
+    '''
+    cheap = []
+    for b in x:
+        if b.price < y:
+            cheap.append(b)
+    return cheap
+
+print(select_cheaper(RL, 10.00))
+
+print()
+
+def average_price(x: list) -> float:
+    """ Takes a list of restaurants and returns the avg price"""
+    number = 0
+    for b in x:
+        number = b.price + number
+    return number / 26
+
+print(average_price(RL))
+
+print()
+
+print(average_price(select_cuisine(RL, 'Indian')) * (26 / len(select_cuisine(RL, 'Indian'))))
+print()
+print(average_price(select_cuisine(RL, 'Thai') + select_cuisine(RL, 'Chinese')) * (26/ (len(select_cuisine(RL, 'Thai')) + len(select_cuisine(RL, 'Chinese')))))
+print()
+print(alphabetical_names(select_cheaper(RL, 15)))
+print()
+print()
+print(' ---part(g)--- ')
+print()
+print()
+
+import tkinter
+
+my_window = tkinter.Tk()
+my_canvas = tkinter.Canvas(my_window, width=700, height=700)
+my_canvas.pack()
+def create_rectangle_from_center(x: float, y:float, w:float, h:float) -> float:
+    '''draws a rectangle based on the center point of the rectangle
+    '''
+    my_canvas.create_rectangle((x - (w/2)), y -(h/2), x + w/2, y + h/2)
+    return
+create_rectangle_from_center(400, 200, 200, 300)
+
+
+
+
