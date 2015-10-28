@@ -18,8 +18,8 @@ d3 = Dish("Moe's BBQ", 50.00, 500.0)
 print("--- c.2 ---")
 def Dish_str(d_obj: d1) -> str:
     """ Takes a dish object and returns a string"""
-    new_d = (d_obj.name, '$',d_obj.price, ":", d_obj.calories)
-    return new_d
+    print(d_obj.name, '$',d_obj.price, ":", d_obj.calories)
+    return
 
 print(Dish_str(d1))
 print()
@@ -43,9 +43,10 @@ print()
 print("--- c.4 ---")
 def Dish_change_price(d_obj: Dish, num: float) -> Dish:
     """ Takes in Dish and number and returns"""
-    pass
+    d_obj = d_obj._replace(price = d_obj.price + (num * 0.01 * d_obj.price))
+    return d_obj
 
-
+print(Dish_change_price(d1, 100))
 #c.5
 print("--- c.5 ---")
 def Dish_is_cheap(d_obj: Dish, num: float) -> bool:
@@ -87,22 +88,22 @@ def Dishlist_display(l: DL) -> str:
 print(Dishlist_display(DL))
 print()
 print()
-'''
+
 #c.7
 print("--- c.7 ---")
 def Dishlist_all_cheap(l: list, num: float) -> bool:
     """ Takes in a list and returns a bool"""
     for l_obj in l:
-        if l_obj.price < num:
-            return True
-        else:
+        if not Dish_is_cheap(l_obj,num):
             return False
+    return True
+        
 
 
-# TA:
-print(Dishlist_all_cheap(DL, 13.0))
+# TA: Answered
+print(Dishlist_all_cheap(DL, 10.00))
     
-'''
+
 
 #c.8
 print("--- c.8 ---")
@@ -112,7 +113,7 @@ def Dishlist_change_price(l: list, num: float) -> list:
     for l_obj in l:
         l_new.append(l_obj._replace(price = l_obj.price - num * l_obj.price))
     return l_new #returns the whole body of the function instead for only the first value in the list
-# TA: unsure if this is the right answer
+
 print(Dishlist_change_price(DL, 0.75))
 print()
 print()
@@ -133,28 +134,29 @@ print()
 print("--- c.10 ---")
 def Dishlist_average(l: list) -> float:
     """ Takes a list of dishesh and return the average price of the dishesh"""
-    count = 0
-    for num in l:
-        count = num.price + count
-    return count / 9
-# TA :this works but still haven't figured out how to call a function within a fuction ( probably will be using Dishlist_prices)
+    x=sum(Dishlist_prices(l))
+    y=len(Dishlist_prices(l))
+    return x/y
+# This work 
 print(Dishlist_average(DL))
 print()
 print()
 
 #c.11
+print("--- c.11 ---")
 def Dishlist_keep_cheap(l: list, num: float) -> list:
     """ Takes a list of dishesh and a numb and returns a list of the original dishesh that are less than a given numb"""
     l_original = []
     for l_obj in l:
         if l_obj.price < num:
-            l_original.append(l_obj.price) 
+            l_original.append(l_obj) 
     return l_original
 print(Dishlist_keep_cheap(DL, 10.00))   
 print()
 print()
 
 #c.12
+print("--- c.12 ---")
 ND1 = Dish("Denish Noodles",  24.50, 250.00)
 ND2 = Dish("English Noodles",  48.50, 120.00)
 ND3 = Dish("Irish Noodles", 32.00, 350.00)
@@ -184,9 +186,21 @@ ND25 = Dish("Ukranian Noodles", 35.50, 149.00)
 ND = [ND1,ND2,ND3,ND4,ND5,ND6,ND7,ND8,ND9,ND10,ND11,ND12,ND13,ND14,ND15,ND16,ND17,ND18,ND19,ND20,ND21,ND22,ND23,ND24,ND25]
 
 def before_and_after():
-    s = input()
-    return s
+    ND = [ND1,ND2,ND3,ND4,ND5,ND6,ND7,ND8,ND9,ND10,ND11,ND12,ND13,ND14,ND15,ND16,ND17,ND18,ND19,ND20,ND21,ND22,ND23,ND24,ND25]
+    s = int(input(("What % change do you want: ")))
+    list_n = []
+    print(ND)
+    print()
+    for l_obj in ND:
+        list_n.append(l_obj._replace(price = l_obj.price + s *0.01* l_obj.price))
+    return list_n
 
 
 
-print(before_and_after)
+print(before_and_after())
+print()
+print()
+
+
+
+
