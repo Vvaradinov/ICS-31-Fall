@@ -1,4 +1,4 @@
-# vvaradin prestons
+    # vvaradin prestons
 
 #d.1 #d.2 #d.3
 
@@ -118,7 +118,7 @@ def Erase_everything(C: list) -> list:
     return C.clear()
 
 def Restaurant_change_price(C: list, num: float) -> list:
-    """ """
+        """ """
     result = [ ]
     for obj in C:
          result.append(obj._replace(price = obj.price + num * 0.01 * obj.price))

@@ -1,4 +1,4 @@
-# vvaradin
+# vvaradin prestons
 
 #c
 def Dish(x: str, y: float, z: float) -> None:
@@ -245,15 +245,120 @@ print(Restaurant_is_cheap(r1, 11.75))
 print()
 print()
 print("--- e.4 ---")
-r1 = Restaurant('Thai Dishes', 'Thai', '334-4433', [Dish('Mee Krob', 12.50, 500),
-                                                    Dish('Larb Gai', 11.00, 450)])
+Collection = [Restaurant('Thai Dishes', 'Thai', '334-4433', [Dish('Mee Krob', 12.50, 500),
+                                                    Dish('Larb Gai', 11.00, 450)]),
+              Restaurant('Taillevent', 'French', '01-44-95-15-01', 
+				[Dish('Homard Bleu', 45.00, 750),
+				 Dish('Tournedos Rossini', 65.00, 950),
+				 Dish("Selle d'Agneau", 60.00, 850)]),
+              Restaurant('Pascal', 'French', '940-752-0107', [Dish('Escargots', 12.95, 250),
+                                                     Dish('Poached Salmon', 18.50, 550),
+                                                     Dish('Rack of Lamb', 24.00, 850)])]
 
 
-'''def Collection_raise_prices(R: Restaurant) -> Restaurant:
+def Collection_raise_prices(l: list) -> list:
     """ Takes the collection and raises the prize of every dish by 2.50"""
-    for obj in R.menu:
-        obj._replace(price = obj.price + 2.50)
-        return obj
-print(Collection_raise_prices(r1))
+    result = []
+    for obj in l:
+        result.append(Restaurant_raise_prices(obj))
+    return result
+        
+        
+            
 
-'''
+
+
+
+def Restaurant_raise_prices(R: Restaurant) -> Restaurant:
+    """ Takes a R and returns a R """
+    return Menu_raise_prices(R.menu)
+
+
+def Menu_raise_prices(l: list) -> list:
+    """ Takes menu and returns changed prices """
+    result = []
+    for obj in l:
+        result.append(Dish_raise_price(obj, 2.5))
+    return result
+        
+
+   
+
+
+def Dish_raise_price(D: Dish, num: float) -> list:
+    """ """
+    D = D._replace(price = D.price + num)
+    return D
+                     
+print(Collection_raise_prices(Collection))
+
+print()
+print()
+
+def Collection_change_prices(l: list) -> list:
+    """ Takes the collection and raises the prize of every dish by 2.50"""
+    result = []
+    for obj in l:
+        result.append(Restaurant_raise_prices(obj))
+    return result
+        
+        
+            
+
+
+
+
+def Restaurant_raise_prices(R: Restaurant) -> Restaurant:
+    """ Takes a R and returns a R """
+    return Menu_raise_prices(R.menu)
+
+
+def Menu_raise_prices(l: list) -> list:
+    """ Takes menu and returns changed prices """
+    result = []
+    for obj in l:
+        result.append(Dish_raise_price(obj, 100))
+    return result
+        
+
+   
+
+
+def Dish_raise_price(D: Dish, num: float) -> list:
+    """ """
+    D = D._replace(price = D.price + num * 0.01 * D.price)
+    return D
+                     
+print(Collection_change_prices(Collection))
+
+print()
+print()
+print("--- e.5 ---")
+
+def Collection_select_cheap(l: list, num: float) -> list:
+    """ """
+    result = []
+    for obj in l:
+        if Dishlist_average(obj.menu) <= num:
+            result.append(obj)
+    return result
+        
+        
+            
+
+print(Collection_select_cheap(Collection, 0.1))
+print()
+print()
+print("--- g ---")
+Count=namedtuple('Count', 'letter number')
+
+
+def letter_count(message, letters):
+    newlist=[]
+    for every in letters:
+        newlist.append(Count(every, message.count(every)))
+    return newlist
+
+print(letter_count("the cabbage has baggage","abcd"))
+    
+
