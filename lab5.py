@@ -134,9 +134,9 @@ print()
 print("--- c.10 ---")
 def Dishlist_average(l: list) -> float:
     """ Takes a list of dishesh and return the average price of the dishesh"""
-    x=sum(Dishlist_prices(l))
-    y=len(Dishlist_prices(l))
-    return x/y
+    x = sum(Dishlist_prices(l))
+    y = len(Dishlist_prices(l))
+    return x / y
 # This work 
 print(Dishlist_average(DL))
 print()
@@ -203,4 +203,57 @@ print()
 
 
 
+print("--- e.1 ---")
 
+Restaurant = namedtuple('Restaurant', 'name cuisine phone menu')
+r1 = Restaurant('Thai Dishes', 'Thai', '334-4433', [Dish('Mee Krob', 12.50, 500),
+                                                    Dish('Larb Gai', 11.00, 450)])
+r2 = Restaurant('Taillevent', 'French', '01-44-95-15-01', 
+				[Dish('Homard Bleu', 45.00, 750),
+				 Dish('Tournedos Rossini', 65.00, 950),
+				 Dish("Selle d'Agneau", 60.00, 850)])
+
+r3 = Restaurant('Pascal', 'French', '940-752-0107', [Dish('Escargots', 12.95, 250),
+                                                     Dish('Poached Salmon', 18.50, 550),
+                                                     Dish('Rack of Lamb', 24.00, 850)])
+print(r3)
+
+print()
+print()
+print("--- e.2 ---")
+
+def Restaurant_first_dish_name(R: Restaurant) -> Restaurant:
+    """ Takes a restaurant and returns the name of the first dish in the menu"""
+    for obj in R.menu:
+        return obj.name
+print(Restaurant_first_dish_name(r1))
+
+print()
+print()
+print("--- e.3 ---")
+
+def Restaurant_is_cheap(R: Restaurant, num: float) -> bool:
+    """ Takes a R and a number and returns bool"""
+    for obj in R.menu:
+        if Dishlist_average(R.menu) <= num:
+            return True
+        else:
+            return False
+            
+
+print(Restaurant_is_cheap(r1, 11.75))
+print()
+print()
+print("--- e.4 ---")
+r1 = Restaurant('Thai Dishes', 'Thai', '334-4433', [Dish('Mee Krob', 12.50, 500),
+                                                    Dish('Larb Gai', 11.00, 450)])
+
+
+'''def Collection_raise_prices(R: Restaurant) -> Restaurant:
+    """ Takes the collection and raises the prize of every dish by 2.50"""
+    for obj in R.menu:
+        obj._replace(price = obj.price + 2.50)
+        return obj
+print(Collection_raise_prices(r1))
+
+'''

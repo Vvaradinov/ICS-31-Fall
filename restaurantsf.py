@@ -1,6 +1,9 @@
-# vvaradin prestons
+# RESTAURANT COLLECTION PROGRAM
+# ICS 31, UCI, David G. Kay, Fall 2012
 
-#d.1 #d.2 #d.3
+# Implement Restaurant as a namedtuple, collection as a list
+
+##### MAIN PROGRAM (CONTROLLER)
 
 def restaurants():  # nothing -> interaction
     """ Main program
@@ -12,12 +15,10 @@ def restaurants():  # nothing -> interaction
 
 MENU = """
 Restaurant Collection Program --- Choose one
- n:  Add a new restaurant to the collection   
+ a:  Add a new restaurant to the collection
  r:  Remove a restaurant from the collection
  s:  Search the collection for selected restaurants
  p:  Print all the restaurants
- e:  Erase all the restaurants
- c:  Change prices for the dishesh served
  q:  Quit
 """
 
@@ -28,19 +29,14 @@ def handle_commands(C: list) -> list:
         response = input(MENU)
         if response=="q":
             return C
-        elif response=='n': # changed from "a" to "n"
+        elif response=='a':
             r = Restaurant_get_info()
             C = Collection_add(C, r)
         elif response=='r':
             n = input("Please enter the name of the restaurant to remove:  ")
             C = Collection_remove_by_name(C, n)
-        elif response == 'c':
-            n = input("Change prices for the dishesh served:   ")
-            C = Restaurant_change_price(C, float(n))
         elif response=='p':
             print(Collection_str(C))
-        elif response == "e":
-            print(Erase_everything(C))
         elif response=='s':
             n = input("Please enter the name of the restaurant to search for:  ")
             for r in Collection_search_by_name(C, n):
@@ -113,17 +109,6 @@ def Collection_add(C: list, R: Restaurant) -> list:
     C.append(R)
     return C
 
-def Erase_everything(C: list) -> list:
-    """ Erases all the Restaurants from the list """      
-    return C.clear()
-
-def Restaurant_change_price(C: list, num: float) -> list:
-    """ """
-    result = [ ]
-    for obj in C:
-         result.append(obj._replace(price = obj.price + num * 0.01 * obj.price))
-    return result
-   
 def Collection_remove_by_name(C: list, name: str) -> list:
     """ Given name, remove all Restaurants with that name from collection.
     """
@@ -134,6 +119,5 @@ def Collection_remove_by_name(C: list, name: str) -> list:
     return result
     #    Alternative:
     #    return [r for r in self.rests if r.name != name]
-
 
 restaurants()
