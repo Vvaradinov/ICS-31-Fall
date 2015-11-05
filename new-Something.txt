@@ -1,0 +1,9 @@
+This is a test.
+
+To see how files work with python.
+
+I/O read and write from files.
+
+Call them with methods.
+
+ICS 31 Lecutre.

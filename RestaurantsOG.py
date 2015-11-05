@@ -1,5 +1,5 @@
 # RESTAURANT COLLECTION PROGRAM
-# ICS 31, UCI, David G. Kay, Fall 2012
+# ICS 31, UCI, David G. Kay, Fall 2015
 
 # Implement Restaurant as a namedtuple, collection as a list
 
@@ -9,8 +9,15 @@ def restaurants():  # nothing -> interaction
     """ Main program
     """
     print("Welcome to the restaurants program!")
-    our_rests = Collection_new()
+    choice = """If you'd like to read restaurants from an existing file,
+    type the name of that file; if not, just hit RETURN:  """
+    filename = input(choice)
+    if filename == "":
+        our_rests = Collection_new()
+    else:
+        our_rests = fill_collection_from_file(filename)
     our_rests = handle_commands(our_rests)
+    write_file_from_collection(our_rests)
     print("\nThank you.  Good-bye.")
 
 MENU = """
@@ -75,6 +82,16 @@ def Restaurant_get_info() -> Restaurant:
         input("Please enter the name of the best dish:  "),
         float(input("Please enter the price of that dish:  ")))
 
+def Restaurant_to_tabbed_string(r: Restaurant) -> str:
+    ''' Return a string containing the restaurant's fields,
+        separated by tabs
+    '''
+    return r.name + "\t" + r.cuisine + "\t" + r.phone + "\t" + \
+            r.dish  + "\t" + str(r.price)
+assert Restaurant_to_tabbed_string(Restaurant("Thai Dishes",
+                                              "Thai", '333-4444',
+                                              'Mee Krob', 8.55)) == \
+    "Thai Dishes\tThai\t333-4444\tMee Krob\t8.55"
 
 #### COLLECTION
 # A collection is a list of restaurants
@@ -119,5 +136,30 @@ def Collection_remove_by_name(C: list, name: str) -> list:
     return result
     #    Alternative:
     #    return [r for r in self.rests if r.name != name]
+
+def fill_collection_from_file(filename: str) -> 'list of Restaurant':
+    ''' Read restaurant info from file; return collection.
+        File has one line for each restaurant, with fields delimited
+        by tabs.
+    '''
+    result = []
+    infile = open(filename, 'r')
+    for line in infile:
+        field_list = line.split("\t")
+        new_rest = Restaurant(field_list[0], field_list[1],
+                              field_list[2], field_list[3],
+                              float(field_list[4]))
+        result.append(new_rest)
+    infile.close()
+    return result
+
+def write_file_from_collection(C: 'list of Restaurant') -> None:
+    ''' Write file called restaurants.txt, tab-delimited
+    '''
+    outfile = open('restaurants.txt', 'w')
+    for r in C:
+        outfile.write(Restaurant_to_tabbed_string(r) + "\n")
+    outfile.close()
+    return
 
 restaurants()
