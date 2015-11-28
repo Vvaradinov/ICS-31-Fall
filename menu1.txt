@@ -1,0 +1,4 @@
+3
+Chicken Biryani	$14.99	450
+Lamb Vindaloo	$12.00	560
+Samosa	$3.50	300

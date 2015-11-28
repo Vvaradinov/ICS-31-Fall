@@ -1,0 +1,8 @@
+7
+Steak Sandwich	$2.50	300
+Cheeseburger	$3.00	400
+Cheese Fries	$2.00	350
+French Fries	$1.49	325
+Choco-Donut	$0.99	300
+Fried Ice Cream	$1.49	500
+Added Lettuce	$0.10	5
