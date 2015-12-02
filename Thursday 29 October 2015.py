@@ -33,7 +33,7 @@ print("--->" + x.strip() + "<---") #strip takes out white space in begginig and 
 print("--->" + x.lstrip() + "<---") #strip takes out white space on left
 print("--->" + x.rstrip() + "<---") #strip takes out white space on right
 
-
+print("this is it")
 w = "Four***score*and*seven****years ago...."
 print(w.split("*")) #splits for every * in the string
 

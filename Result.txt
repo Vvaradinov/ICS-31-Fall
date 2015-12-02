@@ -1,0 +1,16 @@
+***********************************************************
+Here is a list of available bedrooms (before adding any!)
+Number of bedrooms in service:    0
+------------------------------------
+***********************************************************
+Number of bedrooms in service:    1
+------------------------------------
+101
+Number of bedrooms in service:    5
+------------------------------------
+101
+104
+102
+201
+203
+Thank you for using the Anteater BandB Reservation System!

@@ -1,4 +1,4 @@
-#Lopezak1    Vvaradin
+#Lopezak1    Vvaradin 
 
 print() #blank
 print("<----------------C.1--------------->")
@@ -137,6 +137,7 @@ def Caesar_decrypt(s: str, key: int) -> str:
     return s.translate(table)
 print(Caesar_decrypt("ingvctx xlmw wlmx", 4))
 
+
 print() #blank
 print("<----------------f.1--------------->")
 print() #blank
@@ -145,11 +146,11 @@ t = [ "Four score and seven years ago, our fathers brought forth on",
   "this continent a new nation, conceived in liberty and dedicated",
   "to the proposition that all men are created equal.  Now we are",
   "   engaged in a great 		civil war, testing whether that nation, or any",
-  "nation so conceived and so dedicated, can long endure.        " ]
+  "nation so conceived and so dedicated, can long endure.        ","" ]
 
 def print_line_numbers(x:list) -> None:
-    """Takes a list of strings and prints each string preceded by a line number
-    """
+    '''Takes a list of strings and prints each string preceded by a line number
+    '''
     for i in range(len(x)):
         s = ' {:5}: {:5}'.format(i+1,x[i])
         print(s)
@@ -157,7 +158,56 @@ def print_line_numbers(x:list) -> None:
 
 print_line_numbers(t)
 
+print() #blank
+print("<----------------f.2--------------->")
+print() #blank
 
+def stats(x:list) -> None:
+    '''Takes a list of strings and prints statistics about the list
+    '''
+    empty = []
+    nonempty = []
+    char = []
+    charNonEmpty = []
+    for i in range(len(x)):
+        char.append(len(x[i]))
+        if x[i] == "":
+            empty.append(x[i])
+        else:
+            nonempty.append(x[i])
+            charNonEmpty.append(len(x[i]))
+    totalAvg = round(sum(char)/len(char),2)
+    nonEmptyAvg = round(sum(charNonEmpty)/len(charNonEmpty),2)
+    print(' {:5} {:5}'.format(len(char),'lines in the list'))
+    print(' {:5} {:5}'.format(len(empty),'empty lines'))
+    print(' {:5} {:5}'.format(totalAvg,'average  characters per line'))
+    print(' {:5} {:5}'.format(nonEmptyAvg,'average characters per non-empty line'))
+    return
+
+stats(t)
+
+def list_of_words(x:list) -> list:
+    '''takes a list of strings and returns a list of individual words with
+    all white space and punctuation removed (except for apostrophes/single quotes)
+    '''
+    L_1 = []
+    L_2 = []
+    for i in x:
+        L_1.append(i.split())
+    for i in L_1:
+        L_2.append(i)
+    return L_2
+
+print(list_of_words(t))
+
+
+
+        
+        
+    
+            
+
+            
 
 
 
