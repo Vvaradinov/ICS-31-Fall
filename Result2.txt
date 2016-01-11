@@ -1,0 +1,32 @@
+First list of available bedrooms:
+Number of bedrooms in service:    3
+------------------------------------
+301
+302
+303
+List of available bedrooms after deleting one:
+Number of bedrooms in service:    3
+------------------------------------
+301
+302
+303
+List of available bedrooms:
+Number of bedrooms in service:    6
+------------------------------------
+301
+302
+303
+302
+304
+305
+Another list, having deleted one and added another:
+Number of bedrooms in service:    7
+------------------------------------
+301
+302
+303
+302
+304
+305
+307
+Thank you for choosing the Anteater BandB Reservation System!
